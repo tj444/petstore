@@ -1,0 +1,4 @@
+public/uploads/*
+!public/uploads/.htaccess
+vendor/
+public/assets/libs

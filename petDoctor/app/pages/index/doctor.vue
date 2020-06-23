@@ -3,7 +3,7 @@
 		<view class="centent">
 			专业医生在线问答，给您的爱宠提供做全面的呵护，再也不会为了爱宠生病而着急上火。
 		</view>
-		<!-- <view class="WeChat">搜索微信号码添加</view> -->
+		<view class="WeChat">搜索微信号码添加</view>
 		<view class="doctor_id">医生微信ID：<text>{{wcchat}}</text></view>
 		<view class="copy_wcchat" @click="Copywchat">复制微信号</view>
 	</view>
@@ -63,7 +63,7 @@
 		text-align: center;
 		font-size: 34rpx;
 		color: #333;
-		padding-top: 8rpx;
+		padding-top: 10rpx;
 	}
 	.doctor_id text{
 		color:#7BC6BD;

@@ -25,39 +25,46 @@
 			return {
 		     txvideoList:[],
 			 imgUrl:imgUrl,
-			 cursor:2,
+			 cursor:0,
 			 more_status:'more',
 			 time:3
 			}
 		},
-		onLoad() {
-          this.txvideo(1)
+		onLoad(options) {
+          this.txvideo(JSON.parse(options.cursor))
 		},
 		methods: {
-         async txvideo(code){
+         async txvideo(cursor){
          	let res = await this.$api.txvideo({
-				cursor:this.cursor++
+				cursor
 			})
             if(res.data.code==1){
-				if(code==1){
-				 this.txvideoList = res.data.data.list;
-				}else{
-				  if(res.data.data.list.length==0){
-					   this.more_status = 'noMore'
-				  }else{
-					  this.more_status = 'loading'
-					 var timer = setInterval(()=>{
-						 this.time--
-						 if(this.time<=0){
-							this.txvideoList = this.txvideoList.concat(res.data.data.list)
-							this.more_status = 'more'
-						   clearInterval(timer)
-						 }
-					 },1000) 
-				  }
-				}
+			  this.txvideoList = res.data.data.list;
+			  this.cursor = res.data.data.cursor
          	}
          },
+		 //下拉刷新
+		 async cursor_item(){
+			let res = await this.$api.txvideo({
+				cursor:this.cursor
+			}) 
+			if(res.data.code==1){
+				if(res.data.data.list.length==0){
+					this.more_status = 'noMore';
+				}else{
+				  	this.more_status = 'loading';
+					var timer = setInterval(()=>{
+						 this.time--
+						 if(this.time<=0){
+						  this.cursor = res.data.data.cursor;
+						   this.txvideoList = this.txvideoList.concat(res.data.data.list);
+						   this.more_status = 'more';
+						   clearInterval(timer)
+						 }
+					},1000)
+				}
+			}
+		 },
 		 txvVideo(item){
 		    uni.navigateTo({
 		 	 url:'./txvVideo?video=' + JSON.stringify(item)
@@ -65,10 +72,10 @@
 		 }
 		},
 	  onReachBottom() {
-	  	this.txvideo(2)
+	  	this.cursor_item()
 	  },
 	  onPullDownRefresh: function() {
-	  	this.txvideo()
+		  this.cursor_item()
 	  	wx.stopPullDownRefresh()
 	  },
 	}

@@ -31,7 +31,8 @@
 		data() {
 			return {
 		     txvideoList:[],
-			 imgUrl:imgUrl
+			 imgUrl:imgUrl,
+			 cursor:0
 			}
 		},
 		onLoad() {
@@ -42,12 +43,13 @@
 		 async txvideo(){
 			let res = await this.$api.txvideo()
 		    if(res.data.code==1){
-			 this.txvideoList = res.data.data.list
+			 this.txvideoList = res.data.data.list;
+			 this.cursor = res.data.data.cursor
 			}
 		 },
           more(){
 			 uni.navigateTo({
-			 	url:'./Pet_park'
+			 	url:'./Pet_park?cursor=' + JSON.stringify(this.cursor)
 			 })
 		  },
 		  online(){

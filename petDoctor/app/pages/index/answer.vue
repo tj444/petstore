@@ -1,7 +1,6 @@
 <template>
 	<view>
 		<view class="open">{{contentObject.data.title}}</view>
-		<view class="timer">{{timestampToTime(contentObject.time)}}</view>
 		<view class="centent_width">
 		  <rich-text :nodes="contentObject.data.content"></rich-text>
 		</view>
@@ -52,7 +51,6 @@
 	 color: #333333;
 	 font-size: 24rpx;
 	 padding-top: 30rpx;
-	 line-height: 50rpx;
  }
  .goodet_images{
 	 width: 600rpx;

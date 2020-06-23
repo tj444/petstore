@@ -15,7 +15,9 @@
 		},
 		onLoad(options) {
 		 this.videoobject = JSON.parse(options.video)
-		 console.log(this.videoobject.vid)
+		  uni.setNavigationBarTitle({
+		  	title:this.videoobject.title
+		  })
 		}
 	}
 </script>

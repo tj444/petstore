@@ -11,7 +11,7 @@
 	    ,{
             "path" : "pages/index/Pet_park",
             "style" : {
-				"navigationBarTitleText": "宠物园",
+				"navigationBarTitleText": "宠物圈",
 				"navigationBarTextStyle": "white",
 				"navigationBarBackgroundColor":"#7BC6BD",
 				 "enablePullDownRefresh":true

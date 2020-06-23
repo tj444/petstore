@@ -23,7 +23,7 @@
 		},
 		data() {
 			return {
-		     txvideoList:[],
+		   txvideoList:[],
 			 imgUrl:imgUrl,
 			 cursor:0,
 			 more_status:'more',
@@ -31,16 +31,14 @@
 			}
 		},
 		onLoad(options) {
-          this.txvideo(JSON.parse(options.cursor))
+			this.txvideo()
 		},
 		methods: {
          async txvideo(cursor){
-         	let res = await this.$api.txvideo({
-				cursor
-			})
-            if(res.data.code==1){
-			  this.txvideoList = res.data.data.list;
-			  this.cursor = res.data.data.cursor
+         	let res = await this.$api.txvideo()
+       if(res.data.code==1){
+			    this.txvideoList = res.data.data.list;
+			     this.cursor = res.data.data.cursor
          	}
          },
 		 //下拉刷新

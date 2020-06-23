@@ -47,9 +47,9 @@
 			 this.cursor = res.data.data.cursor
 			}
 		 },
-          more(){
+      more(){
 			 uni.navigateTo({
-			 	url:'./Pet_park?cursor=' + JSON.stringify(this.cursor)
+			 	url:'./Pet_park' 
 			 })
 		  },
 		  online(){
